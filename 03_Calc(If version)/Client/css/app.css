@@ -1,0 +1,21 @@
+/*
+  color : keyword;
+
+  or
+
+  color : rgb(0,0,0);
+  rgb的範圍 0 ~ 255;
+
+  or
+
+  color : #HEX
+  #RRGGBB
+*/
+
+.text-green {
+  color: green;
+}
+
+.text-blue {
+  color: navy;
+}
