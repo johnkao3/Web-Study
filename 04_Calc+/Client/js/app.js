@@ -6,7 +6,7 @@ function setInput(e) {
     "Add": "+",
     "Sub": "-",
     "Mlt": "*",
-    "Dib": "/",
+    "Div": "/",
     "Dot": ".",
     "L"  : "(",
     "R"  : ")"
@@ -16,12 +16,36 @@ function setInput(e) {
       $("#expr").val("");
       $("#ans").val("");
       break;
+    case "Del" :
+      var z = vExpr.substring(0, vExprLen-1);
+      $("#expr").val(z);
+      break;
+    case "Add":
+    case "Sub":
+    case "Mlt":
+    case "Div":
+    case "Dot":
+    case "L"  :
+    case "R"  :
+      $("#expr").val(vExpr+vOp[vID]);
+      break;
+    default   :
+      $("#expr").val(vExpr+vID);
+      break;
      
   }
 }
+
+function setAns() {
+  var vExpr = $("#expr").val();
+  $("#ans").val( eval(vExpr) );
+}
+
 function main() {
   $('.calcBtn').button();
   $('.calcBtn').on('click', setInput);
+  $("#btnCalc").button();
+  $("#btnCalc").on('click', setAns);
 }
 
 $(document).ready( main );
