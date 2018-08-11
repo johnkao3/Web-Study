@@ -1,3 +1,9 @@
+function cleanNumber() {
+  // 做完運算清空欄位1與2
+  $("#num01").val('');
+  $("#num02").val('');
+}
+
 function calc(e) {
   
   console.log(e);
