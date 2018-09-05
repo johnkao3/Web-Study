@@ -31,19 +31,62 @@ function chg() {
   showStatus();
 }
 
-function main_POS() {
+function addItem() {
+	var n = $("input[name='styles']:checked").val();
+	var index = $("#menus option:selected").index();
+	var qty = $("#qty").val();
+	var subTotal = price[n][index] * qty;
+
+	var obj = {
+		styles: n,
+		menu_index: index,
+		qty: qty
+	}
+	orderList.push(obj);
+
+	var item =
+		'<tr><th scope="row">'+
+		orderList.length+'</th><td>'+
+		opt[n][index]+'</td><td>'+
+		price[n][index]+'</td><td>'+
+		qty+'</td><td>'+
+    subTotal+'</td><td>'+
+    '<i class="fas fa-times fa-fw delItem"></i></td>';
+  $("#orderList").append(item);
+
+	orderTotal = 0;
+	for (var i = 0;i< orderList.length;++i) {
+		// a = b + a == a += b
+		orderTotal += price[orderList[i].styles][orderList[i].menu_index]* orderList[i].qty *1
+		$("#orderTotal").html(orderTotal)
+	}
+}
+
+function delItem(e) {
+  console.log(e)
+}
+
+function removeAll() {
+	orderList = [];
+	$("#orderList").empty();
+	$("#orderTotal").html(0);
+}
+
+function mainPos() {
   $("input[name='styles']").on('change', chg);
   $("#menus").on("change", showStatus); // 菜單
   $("#qty"    ).on("change", showStatus); // 數量
   $("#outside").on("change", chgTot);  // 外帶
   $("#extra"  ).on("change", chgTot);  // 加量
-
+	$("#addItem").on('click', addItem);
+  $("#removeAll").on('click', removeAll);
+  $("#orderList").on('click','.delItem', delItem);
   chg();
 }
 
 var opt, price;  // global var. declaration
 // global var. initialization
-opt = [	
+opt = [
   ['00>燒餅','01>油條','02>豆漿'],
   ['10>漢堡','11>薯條','12>可樂','13>奶茶'],
   ['20>馬鈴署','21>玉米濃湯','22>起司培根','23>奶昔']
@@ -53,3 +96,6 @@ price = [
   [20,25,15,25],
   [50,35,25,15]
 ];
+
+var orderList = [];
+var orderTotal = 0;

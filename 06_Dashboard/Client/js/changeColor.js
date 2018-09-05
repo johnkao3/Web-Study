@@ -19,7 +19,7 @@ function changeColor() {
   }
 }
 
-function changeColormain() {
+function mainChangeColor() {
   $("#header").on("click", changeColor);
   $("#btnBlue").on("click", changeBlue);
   $("#btnGreen").on("click", changeGreen);

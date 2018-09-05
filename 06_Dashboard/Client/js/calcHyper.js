@@ -44,7 +44,7 @@ function setAns() {
   $("#ans").val( eval(vExpr) );
 }
 
-function CalcHypermain() {
+function mainCalcHyper() {
   $('#calcHyper-tab .btn').on('click', setInput);
   // $("#btnCalc").on('click', setAns);
 }

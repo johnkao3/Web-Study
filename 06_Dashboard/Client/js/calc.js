@@ -37,7 +37,7 @@ function calc(e) {
   $("#total").val(total);
 }
 
-function Calcmain() {
+function mainCalc() {
   // event registration
   $("#add").on('click', calc);
   $("#minus").on('click', calc);
